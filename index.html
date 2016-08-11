@@ -30,27 +30,32 @@
     <script src="famax.js"></script>
     <script>
       var arry = window.location.href.split("#!/");
-      if(arry[1].split("/").length == 1){
-        var fbusername = arry[1];
-        $('title').text(fbusername);
-  	    $('#famax').famax({
-  		      fanPage:"https://www.facebook.com/" + fbusername,
-  	        appId:'852602131447787',
-  		      accessToken:"EAAMHbZBctZCZBsBAGyNArdoI4FC3ZCvvyZCQYzmnUZBcZBafriZAAYhENEcK9C7F1VRs4biBKr8jUMb19Qj69bZCc200yQDAn1anED2uMQb5G795suvGPZB75zIjCYhTQCcM8Q6UOMaLz8povOQmExu9fVlZCQEMuKCbtoZD",
-  	        // optional parameters
-  		      maxContainerWidth:"75%",
-  		      famaxWidgetHeight:"100%",
-  	        onClickAction: "popup",
-  		      maxColumns:1,
-  	        maxResults:9, //Maximum videos to display in one load
-      	  	innerOffset: 40, //Distance between video thumbnails
-      	  	minItemWidth: 300, //Minumum width of a video thumbnails
-      	  	maxItemWidth : 450, //Maximum width of a video thumbnails
-      	  	outerOffset: 35, //Distance between video thumbnails and plugin conatiner
-      	  	alwaysUseDropdown: true,
-      	  	maxAttachments: 2,
-      	  	notFoundImage: '404.jpg', //change this image link
-  	    });
+      if(arry[1] != undefined){
+        if(arry[1].split("/").length == 1){
+          var fbusername = arry[1];
+          $('title').text(fbusername);
+    	    $('#famax').famax({
+    		      fanPage:"https://www.facebook.com/" + fbusername,
+    	        appId:'852602131447787',
+    		      accessToken:"EAAMHbZBctZCZBsBAGyNArdoI4FC3ZCvvyZCQYzmnUZBcZBafriZAAYhENEcK9C7F1VRs4biBKr8jUMb19Qj69bZCc200yQDAn1anED2uMQb5G795suvGPZB75zIjCYhTQCcM8Q6UOMaLz8povOQmExu9fVlZCQEMuKCbtoZD",
+    	        // optional parameters
+    		      maxContainerWidth:"75%",
+    		      famaxWidgetHeight:"100%",
+    	        onClickAction: "popup",
+    		      maxColumns:1,
+    	        maxResults:9, //Maximum videos to display in one load
+        	  	innerOffset: 40, //Distance between video thumbnails
+        	  	minItemWidth: 300, //Minumum width of a video thumbnails
+        	  	maxItemWidth : 450, //Maximum width of a video thumbnails
+        	  	outerOffset: 35, //Distance between video thumbnails and plugin conatiner
+        	  	alwaysUseDropdown: true,
+        	  	maxAttachments: 2,
+        	  	notFoundImage: '404.jpg', //change this image link
+    	    });
+        }
+        else{
+          document.getElementById('famax').innerHTML = '<img src="jagathy-vettam.jpg" /><p>അത് ഇവിടെ ഇല്ല, സർ!</p>';
+        }
       }
       else{
         document.getElementById('famax').innerHTML = '<img src="jagathy-vettam.jpg" /><p>അത് ഇവിടെ ഇല്ല, സർ!</p>';
