@@ -29,8 +29,9 @@
     <script src="jquery.js"></script>
     <script src="famax.js"></script>
     <script>
-      if(window.location.href.split("#!/")[1] != undefined){
-        var fbusername = window.location.href.split("#!/")[1];
+      var arry = window.location.href.split("#!/");
+      if(arry[1].split("/").length == 1){
+        var fbusername = arry[1];
         $('title').text(fbusername);
   	    $('#famax').famax({
   		      fanPage:"https://www.facebook.com/" + fbusername,
