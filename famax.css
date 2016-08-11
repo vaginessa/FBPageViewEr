@@ -1,0 +1,85 @@
+body {
+    font-family: Manjari;
+    font-size: 14px;
+    text-align: center;
+    background-color: #eee;
+}
+.control_holder {
+    padding: 5px;
+    font-size: 15px;
+    text-align: left;
+    width: 500px;
+    display: inline-block;
+}
+.control_holder input,
+.control_holder select {
+    float: right;
+}
+.control_holder select {
+    /*width: 172px;*/
+}
+.separator {
+    height: 0px;
+    width: 100%;
+    border-top: 1px solid #e2e2e2;
+}
+.break {
+    display: none;
+}
+@media all and (max-width: 500px) {
+    .break {
+        display: block;
+    }
+    .control_holder input,
+    .control_holder select {
+        float: none;
+        margin-bottom: 5px;
+    }
+}
+h1 {
+    font-size: 45px;
+    color: #424242;
+    font-family: Manjari;
+    margin: 20px 0px;
+}
+/*****************Famax Added Styles******************************/
+
+.famax-channel-title {
+    overflow: hidden;
+}
+@media all and (max-width: 800px),
+screen and (max-device-width: 800px) {
+    .control_holder {
+        width: 100%;
+    }
+}
+a.flash {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 25px;
+    font-size: 16px;
+    background-color: cornflowerblue;
+    padding: 5px;
+    box-sizing: border-box;
+    color: white;
+    font-weight: bold;
+    font-family: Manjari;
+    text-decoration: none;
+}
+
+/*****************SpEcHiDe Added Styles****************************/
+#fourzerofourerror {
+  line-height: 150%;
+  box-sizing: border-box;
+  font-size:4em;
+  margin-top:2em;
+  margin-left:2em;
+  margin-right:2em;
+}
+#fourzerofourerror > img {
+  vertical-align:bottom;
+  float: right;
+}
+#fourzerofourerror > p {
+  text-align: center;
+}
