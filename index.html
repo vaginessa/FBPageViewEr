@@ -18,6 +18,10 @@
   </head>
 
   <body>
+    <form method="POST" onsubmit="search(document.getElementById('srch-qry').value);return false;">
+      <input type="text" class="form-control" id="srch-qry" name="srch-qry" value="COMING SOON" readonly />
+      <button class="btn form-control">search not implemented</button>
+    </form>
     <div id="famax" class="famax"></div>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -29,6 +33,9 @@
     <script src="jquery.js"></script>
     <script src="famax.js"></script>
     <script>
+      var search = function(queryStr){
+        console.log(queryStr);
+      };
       var arry = window.location.href.split("#!/");
       if(arry[1] != undefined){
         if(arry[1].split("/").length == 1){
