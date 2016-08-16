@@ -15,10 +15,15 @@
     <link rel="stylesheet" href="//smc.org.in/fonts/css/fonts.css" type="text/css" />
     <link rel="stylesheet" href="famax.css" />
     <link rel="stylesheet" href="famax_white.css" />
+    <style>
+      #qweForm {
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
-    <form method="POST" onsubmit="search(document.getElementById('srch-qry').value);return false;">
+    <form id="qweForm" method="POST" onsubmit="search(document.getElementById('srch-qry').value);return false;">
       <input type="text" class="form-control" id="srch-qry" name="srch-qry" value="COMING SOON" readonly />
       <button class="btn form-control">search not implemented</button>
     </form>
@@ -33,8 +38,44 @@
     <script src="jquery.js"></script>
     <script src="famax.js"></script>
     <script>
+      var FB_ACCESS_TOKEN = "EAAMHbZBctZCZBsBAGyNArdoI4FC3ZCvvyZCQYzmnUZBcZBafriZAAYhENEcK9C7F1VRs4biBKr8jUMb19Qj69bZCc200yQDAn1anED2uMQb5G795suvGPZB75zIjCYhTQCcM8Q6UOMaLz8povOQmExu9fVlZCQEMuKCbtoZD";
+      var sendData = function(type, URL, formData, callBack){
+        // create a XHR object
+        var xhr = new XMLHttpRequest();
+        // open the XHR object in asynchronous mode
+        xhr.open(type, URL, true);
+        //xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=ISO-8859-1')
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            // OK! we have a successful response.
+            var response = xhr.responseText;
+            //console.log('OUTPUT: ' + response);
+            // do something else with the response
+            callBack(URL, response);
+          }
+        };
+        // GET or POST the URL according to type
+        if(type == "GET"){
+          xhr.send();
+        }
+        if(type == "POST"){
+          xhr.send(formData);
+        }
+      };
       var search = function(queryStr){
         console.log(queryStr);
+        var query_url = "https://graph.facebook.com/" + "comptrolls" + "/feed?access_token=" + FB_ACCESS_TOKEN;
+        sendData("GET", query_url, "", function(response){
+          var jsonobj = JSON.parse(response);
+          var reqdata = jsonobj.data;
+          var rsp = "";
+          for(var i = 0; i < reqdata.length; i++){
+            var message = reqdata[i].message;
+            var picurl = "https://graph.facebook.com/" + reqdata[i].id.split('_')[1] + "/picture";
+            rsp += "<div class='row'><p>" + message + "</p><img src='" + picurl + "' /></div>";
+          }
+          document.getElementById('famax').innerHTML = rsp;
+        });
       };
       var arry = window.location.href.split("#!/");
       if(arry[1] != undefined){
@@ -44,7 +85,7 @@
     	    $('#famax').famax({
     		      fanPage:"https://www.facebook.com/" + fbusername,
     	        appId:'852602131447787',
-    		      accessToken:"EAAMHbZBctZCZBsBAGyNArdoI4FC3ZCvvyZCQYzmnUZBcZBafriZAAYhENEcK9C7F1VRs4biBKr8jUMb19Qj69bZCc200yQDAn1anED2uMQb5G795suvGPZB75zIjCYhTQCcM8Q6UOMaLz8povOQmExu9fVlZCQEMuKCbtoZD",
+    		      accessToken:FB_ACCESS_TOKEN,
     	        // optional parameters
     		      maxContainerWidth:"75%",
     		      famaxWidgetHeight:"100%",
@@ -61,10 +102,12 @@
     	    });
         }
         else{
+          document.getElementById('qweForm').style.display = "block";
           document.getElementById('famax').innerHTML = '<img src="jagathy-vettam.jpg" /><p>അത് ഇവിടെ ഇല്ല, സർ!</p>';
         }
       }
       else{
+        document.getElementById('qweForm').style.display = "block";
         document.getElementById('famax').innerHTML = '<img src="jagathy-vettam.jpg" /><p>അത് ഇവിടെ ഇല്ല, സർ!</p>';
       }
     </script>
